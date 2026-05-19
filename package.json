@@ -6,13 +6,17 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
-    "build": "tsup src --out-dir build"
+    "build": "tsup src --out-dir build",
+    "lint": "biome lint .",
+    "format": "biome format . --write",
+    "check": "biome check . --write"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@biomejs/biome": "2.4.15",
     "@types/node": "25.9.0",
     "tsup": "8.5.1",
     "tsx": "4.22.2",
