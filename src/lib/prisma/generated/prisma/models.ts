@@ -8,6 +8,6 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Orgs.js'
-export type * from './models/Pet.js'
-export type * from './commonInputTypes.js'
+export type * from './models/Orgs'
+export type * from './models/Pet'
+export type * from './commonInputTypes'
