@@ -1,6 +1,8 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import z from 'zod'
 import { PrismaOrgsRepository } from '@/repositories/prisma/prisma-orgs-repository'
+import { OrgWhatsCadastratadoError } from '@/use-cases/errors/orgs/org-email-cadastratado-error'
+import { OrgEmailCadastratadoError } from '@/use-cases/errors/orgs/org-whats-cadastratado-error'
 import { RegisterOrgUseCase } from '@/use-cases/orgs/register-use-case'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
@@ -32,9 +34,14 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       password,
       whatsapp,
     })
-    // biome-ignore lint/correctness/noUnusedVariables: <explanation>
   } catch (error) {
-    return reply.status(409).send()
+    if (error instanceof OrgEmailCadastratadoError) {
+      return reply.status(409).send({ message: error.message })
+    } else if (error instanceof OrgWhatsCadastratadoError) {
+      return reply.status(409).send({ message: error.message })
+    }
+
+    throw error
   }
 
   return reply.status(201).send()

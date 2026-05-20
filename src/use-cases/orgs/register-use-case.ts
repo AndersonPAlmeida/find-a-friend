@@ -1,5 +1,7 @@
 import { hash } from 'bcryptjs'
 import type { OrgsRepository } from '@/repositories/orgs-repository'
+import { OrgWhatsCadastratadoError } from '../errors/orgs/org-email-cadastratado-error'
+import { OrgEmailCadastratadoError } from '../errors/orgs/org-whats-cadastratado-error'
 
 interface RegisterOrgUseCaseRequest {
   cep: string
@@ -32,11 +34,11 @@ export class RegisterOrgUseCase {
     const verificarWhatsUnico = await this.orgsRepository.findByWhats(whatsapp)
 
     if (verificarEmailUnico) {
-      throw new Error('E-mail já existente.')
+      throw new OrgEmailCadastratadoError()
     }
 
     if (verificarWhatsUnico) {
-      throw new Error('WhatsApp já existente.')
+      throw new OrgWhatsCadastratadoError()
     }
 
     await this.orgsRepository.create({
