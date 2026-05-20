@@ -1,4 +1,5 @@
 import { hash } from 'bcryptjs'
+import type { Orgs } from '@/lib/prisma/generated/prisma/client'
 import type { OrgsRepository } from '@/repositories/orgs-repository'
 import { OrgWhatsCadastratadoError } from '../errors/orgs/org-email-cadastratado-error'
 import { OrgEmailCadastratadoError } from '../errors/orgs/org-whats-cadastratado-error'
@@ -14,6 +15,10 @@ interface RegisterOrgUseCaseRequest {
   whatsapp: string
 }
 
+interface RegisterOrgUseCaseResponse {
+  org: Orgs
+}
+
 export class RegisterOrgUseCase {
   constructor(private orgsRepository: OrgsRepository) {}
 
@@ -26,7 +31,7 @@ export class RegisterOrgUseCase {
     nome,
     password,
     whatsapp,
-  }: RegisterOrgUseCaseRequest) {
+  }: RegisterOrgUseCaseRequest): Promise<RegisterOrgUseCaseResponse> {
     const password_hash = await hash(password, 3)
 
     const verificarEmailUnico = await this.orgsRepository.findByEmail(email)
@@ -41,7 +46,7 @@ export class RegisterOrgUseCase {
       throw new OrgWhatsCadastratadoError()
     }
 
-    await this.orgsRepository.create({
+    const org = await this.orgsRepository.create({
       cep,
       cidade,
       email,
@@ -51,5 +56,7 @@ export class RegisterOrgUseCase {
       password_hash,
       whatsapp,
     })
+
+    return { org }
   }
 }
