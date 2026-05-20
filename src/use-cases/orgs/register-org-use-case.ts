@@ -1,8 +1,9 @@
 import { hash } from 'bcryptjs'
 import type { Orgs } from '@/lib/prisma/generated/prisma/client'
 import type { OrgsRepository } from '@/repositories/orgs-repository'
-import { OrgWhatsCadastratadoError } from '../errors/orgs/org-email-cadastratado-error'
-import { OrgEmailCadastratadoError } from '../errors/orgs/org-whats-cadastratado-error'
+import { OrgCampoObrigatorioError } from '../errors/orgs/org-campo-obrigatorio-error'
+import { OrgEmailCadastratadoError } from '../errors/orgs/org-email-cadastratado-error'
+import { OrgWhatsCadastratadoError } from '../errors/orgs/org-whats-cadastratado-error'
 
 interface RegisterOrgUseCaseRequest {
   cep: string
@@ -46,6 +47,9 @@ export class RegisterOrgUseCase {
       throw new OrgWhatsCadastratadoError()
     }
 
+    if (enderecoRua === '' || whatsapp === '' || cidade === '') {
+      throw new OrgCampoObrigatorioError()
+    }
     const org = await this.orgsRepository.create({
       cep,
       cidade,

@@ -1,7 +1,7 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import z from 'zod'
-import { OrgWhatsCadastratadoError } from '@/use-cases/errors/orgs/org-email-cadastratado-error'
-import { OrgEmailCadastratadoError } from '@/use-cases/errors/orgs/org-whats-cadastratado-error'
+import { OrgEmailCadastratadoError } from '@/use-cases/errors/orgs/org-email-cadastratado-error'
+import { OrgWhatsCadastratadoError } from '@/use-cases/errors/orgs/org-whats-cadastratado-error'
 import { makeRegisterOrgUseCase } from '@/use-cases/factories/orgs/make-register-org-use-case'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {

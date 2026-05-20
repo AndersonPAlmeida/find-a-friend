@@ -1,5 +1,5 @@
-export class OrgWhatsCadastratadoError extends Error {
+export class OrgEmailCadastratadoError extends Error {
   constructor() {
-    super('E-mail já existente.')
+    super('WhatsApp já existente.')
   }
 }
