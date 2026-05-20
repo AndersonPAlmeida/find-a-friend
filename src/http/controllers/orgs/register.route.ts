@@ -1,9 +1,8 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import z from 'zod'
-import { PrismaOrgsRepository } from '@/repositories/prisma/prisma-orgs-repository'
+import { makeRegisterOrgUseCase } from '@/repositories/factories/orgs/make-register-org-use-case'
 import { OrgWhatsCadastratadoError } from '@/use-cases/errors/orgs/org-email-cadastratado-error'
 import { OrgEmailCadastratadoError } from '@/use-cases/errors/orgs/org-whats-cadastratado-error'
-import { RegisterOrgUseCase } from '@/use-cases/orgs/register-use-case'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -21,8 +20,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     registerBodySchema.parse(request.body)
 
   try {
-    const orgsRepository = new PrismaOrgsRepository()
-    const registerOrgUseCase = new RegisterOrgUseCase(orgsRepository)
+    const registerOrgUseCase = makeRegisterOrgUseCase()
 
     await registerOrgUseCase.execute({
       cep,
