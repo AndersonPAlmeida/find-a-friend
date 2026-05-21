@@ -6,7 +6,17 @@ import type { OrgsRepository } from '../orgs-repository'
 export class InMemoryOrgsRepository implements OrgsRepository {
   public orgs: Orgs[] = []
 
-  async findByEmail(email: string): Promise<Orgs | null> {
+  async findById(idOrg: string) {
+    const org = this.orgs.find((item) => item.id === idOrg)
+
+    if (!org) {
+      return null
+    }
+
+    return org
+  }
+
+  async findByEmail(email: string) {
     const org = this.orgs.find((item) => item.email === email)
 
     if (!org) {
@@ -16,7 +26,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
     return org
   }
 
-  async findByWhats(whatsapp: string): Promise<Orgs | null> {
+  async findByWhats(whatsapp: string) {
     const org = this.orgs.find((item) => item.whatsapp === whatsapp)
 
     if (!org) {
@@ -25,7 +35,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
 
     return org
   }
-  async create(data: OrgsCreateInput): Promise<Orgs> {
+  async create(data: OrgsCreateInput) {
     const org = {
       id: randomUUID(),
       nome: data.nome,
