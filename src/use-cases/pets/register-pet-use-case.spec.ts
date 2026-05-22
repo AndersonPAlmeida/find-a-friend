@@ -36,6 +36,8 @@ describe('Registro de Pet', () => {
       nivelEnergia: 'ALTO',
       independencia: 'MEDIO',
       ambiente: 'AMBOS',
+      cidadeOrg: org.cidade,
+      estadoOrg: org.estado,
       orgId: org.id,
     })
 
@@ -51,6 +53,8 @@ describe('Registro de Pet', () => {
         nivelEnergia: 'ALTO',
         independencia: 'MEDIO',
         ambiente: 'AMBOS',
+        cidadeOrg: 'Jequie',
+        estadoOrg: 'BA',
         orgId: randomUUID(),
       })
     ).rejects.instanceOf(OrgIdCadastratadoError)

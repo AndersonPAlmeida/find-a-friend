@@ -32,6 +32,8 @@ export type PetMinAggregateOutputType = {
   nivel_energia: $Enums.Nivel_Energia | null
   independencia: $Enums.Independencia | null
   ambiente: $Enums.Ambiente | null
+  cidade_org: string | null
+  estado_org: string | null
   created_at: Date | null
   orgs_id: string | null
 }
@@ -44,6 +46,8 @@ export type PetMaxAggregateOutputType = {
   nivel_energia: $Enums.Nivel_Energia | null
   independencia: $Enums.Independencia | null
   ambiente: $Enums.Ambiente | null
+  cidade_org: string | null
+  estado_org: string | null
   created_at: Date | null
   orgs_id: string | null
 }
@@ -56,6 +60,8 @@ export type PetCountAggregateOutputType = {
   nivel_energia: number
   independencia: number
   ambiente: number
+  cidade_org: number
+  estado_org: number
   created_at: number
   orgs_id: number
   _all: number
@@ -70,6 +76,8 @@ export type PetMinAggregateInputType = {
   nivel_energia?: true
   independencia?: true
   ambiente?: true
+  cidade_org?: true
+  estado_org?: true
   created_at?: true
   orgs_id?: true
 }
@@ -82,6 +90,8 @@ export type PetMaxAggregateInputType = {
   nivel_energia?: true
   independencia?: true
   ambiente?: true
+  cidade_org?: true
+  estado_org?: true
   created_at?: true
   orgs_id?: true
 }
@@ -94,6 +104,8 @@ export type PetCountAggregateInputType = {
   nivel_energia?: true
   independencia?: true
   ambiente?: true
+  cidade_org?: true
+  estado_org?: true
   created_at?: true
   orgs_id?: true
   _all?: true
@@ -179,6 +191,8 @@ export type PetGroupByOutputType = {
   nivel_energia: $Enums.Nivel_Energia
   independencia: $Enums.Independencia
   ambiente: $Enums.Ambiente
+  cidade_org: string
+  estado_org: string
   created_at: Date
   orgs_id: string
   _count: PetCountAggregateOutputType | null
@@ -212,6 +226,8 @@ export type PetWhereInput = {
   nivel_energia?: Prisma.EnumNivel_EnergiaFilter<"Pet"> | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaFilter<"Pet"> | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteFilter<"Pet"> | $Enums.Ambiente
+  cidade_org?: Prisma.StringFilter<"Pet"> | string
+  estado_org?: Prisma.StringFilter<"Pet"> | string
   created_at?: Prisma.DateTimeFilter<"Pet"> | Date | string
   orgs_id?: Prisma.StringFilter<"Pet"> | string
   org?: Prisma.XOR<Prisma.OrgsScalarRelationFilter, Prisma.OrgsWhereInput>
@@ -225,6 +241,8 @@ export type PetOrderByWithRelationInput = {
   nivel_energia?: Prisma.SortOrder
   independencia?: Prisma.SortOrder
   ambiente?: Prisma.SortOrder
+  cidade_org?: Prisma.SortOrder
+  estado_org?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   orgs_id?: Prisma.SortOrder
   org?: Prisma.OrgsOrderByWithRelationInput
@@ -241,6 +259,8 @@ export type PetWhereUniqueInput = Prisma.AtLeast<{
   nivel_energia?: Prisma.EnumNivel_EnergiaFilter<"Pet"> | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaFilter<"Pet"> | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteFilter<"Pet"> | $Enums.Ambiente
+  cidade_org?: Prisma.StringFilter<"Pet"> | string
+  estado_org?: Prisma.StringFilter<"Pet"> | string
   created_at?: Prisma.DateTimeFilter<"Pet"> | Date | string
   orgs_id?: Prisma.StringFilter<"Pet"> | string
   org?: Prisma.XOR<Prisma.OrgsScalarRelationFilter, Prisma.OrgsWhereInput>
@@ -254,6 +274,8 @@ export type PetOrderByWithAggregationInput = {
   nivel_energia?: Prisma.SortOrder
   independencia?: Prisma.SortOrder
   ambiente?: Prisma.SortOrder
+  cidade_org?: Prisma.SortOrder
+  estado_org?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   orgs_id?: Prisma.SortOrder
   _count?: Prisma.PetCountOrderByAggregateInput
@@ -272,6 +294,8 @@ export type PetScalarWhereWithAggregatesInput = {
   nivel_energia?: Prisma.EnumNivel_EnergiaWithAggregatesFilter<"Pet"> | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaWithAggregatesFilter<"Pet"> | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteWithAggregatesFilter<"Pet"> | $Enums.Ambiente
+  cidade_org?: Prisma.StringWithAggregatesFilter<"Pet"> | string
+  estado_org?: Prisma.StringWithAggregatesFilter<"Pet"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Pet"> | Date | string
   orgs_id?: Prisma.StringWithAggregatesFilter<"Pet"> | string
 }
@@ -284,6 +308,8 @@ export type PetCreateInput = {
   nivel_energia: $Enums.Nivel_Energia
   independencia: $Enums.Independencia
   ambiente: $Enums.Ambiente
+  cidade_org: string
+  estado_org: string
   created_at?: Date | string
   org: Prisma.OrgsCreateNestedOneWithoutPetsInput
 }
@@ -296,6 +322,8 @@ export type PetUncheckedCreateInput = {
   nivel_energia: $Enums.Nivel_Energia
   independencia: $Enums.Independencia
   ambiente: $Enums.Ambiente
+  cidade_org: string
+  estado_org: string
   created_at?: Date | string
   orgs_id: string
 }
@@ -308,6 +336,8 @@ export type PetUpdateInput = {
   nivel_energia?: Prisma.EnumNivel_EnergiaFieldUpdateOperationsInput | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaFieldUpdateOperationsInput | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteFieldUpdateOperationsInput | $Enums.Ambiente
+  cidade_org?: Prisma.StringFieldUpdateOperationsInput | string
+  estado_org?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   org?: Prisma.OrgsUpdateOneRequiredWithoutPetsNestedInput
 }
@@ -320,6 +350,8 @@ export type PetUncheckedUpdateInput = {
   nivel_energia?: Prisma.EnumNivel_EnergiaFieldUpdateOperationsInput | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaFieldUpdateOperationsInput | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteFieldUpdateOperationsInput | $Enums.Ambiente
+  cidade_org?: Prisma.StringFieldUpdateOperationsInput | string
+  estado_org?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orgs_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -332,6 +364,8 @@ export type PetCreateManyInput = {
   nivel_energia: $Enums.Nivel_Energia
   independencia: $Enums.Independencia
   ambiente: $Enums.Ambiente
+  cidade_org: string
+  estado_org: string
   created_at?: Date | string
   orgs_id: string
 }
@@ -344,6 +378,8 @@ export type PetUpdateManyMutationInput = {
   nivel_energia?: Prisma.EnumNivel_EnergiaFieldUpdateOperationsInput | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaFieldUpdateOperationsInput | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteFieldUpdateOperationsInput | $Enums.Ambiente
+  cidade_org?: Prisma.StringFieldUpdateOperationsInput | string
+  estado_org?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -355,6 +391,8 @@ export type PetUncheckedUpdateManyInput = {
   nivel_energia?: Prisma.EnumNivel_EnergiaFieldUpdateOperationsInput | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaFieldUpdateOperationsInput | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteFieldUpdateOperationsInput | $Enums.Ambiente
+  cidade_org?: Prisma.StringFieldUpdateOperationsInput | string
+  estado_org?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orgs_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -377,6 +415,8 @@ export type PetCountOrderByAggregateInput = {
   nivel_energia?: Prisma.SortOrder
   independencia?: Prisma.SortOrder
   ambiente?: Prisma.SortOrder
+  cidade_org?: Prisma.SortOrder
+  estado_org?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   orgs_id?: Prisma.SortOrder
 }
@@ -389,6 +429,8 @@ export type PetMaxOrderByAggregateInput = {
   nivel_energia?: Prisma.SortOrder
   independencia?: Prisma.SortOrder
   ambiente?: Prisma.SortOrder
+  cidade_org?: Prisma.SortOrder
+  estado_org?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   orgs_id?: Prisma.SortOrder
 }
@@ -401,6 +443,8 @@ export type PetMinOrderByAggregateInput = {
   nivel_energia?: Prisma.SortOrder
   independencia?: Prisma.SortOrder
   ambiente?: Prisma.SortOrder
+  cidade_org?: Prisma.SortOrder
+  estado_org?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   orgs_id?: Prisma.SortOrder
 }
@@ -475,6 +519,8 @@ export type PetCreateWithoutOrgInput = {
   nivel_energia: $Enums.Nivel_Energia
   independencia: $Enums.Independencia
   ambiente: $Enums.Ambiente
+  cidade_org: string
+  estado_org: string
   created_at?: Date | string
 }
 
@@ -486,6 +532,8 @@ export type PetUncheckedCreateWithoutOrgInput = {
   nivel_energia: $Enums.Nivel_Energia
   independencia: $Enums.Independencia
   ambiente: $Enums.Ambiente
+  cidade_org: string
+  estado_org: string
   created_at?: Date | string
 }
 
@@ -526,6 +574,8 @@ export type PetScalarWhereInput = {
   nivel_energia?: Prisma.EnumNivel_EnergiaFilter<"Pet"> | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaFilter<"Pet"> | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteFilter<"Pet"> | $Enums.Ambiente
+  cidade_org?: Prisma.StringFilter<"Pet"> | string
+  estado_org?: Prisma.StringFilter<"Pet"> | string
   created_at?: Prisma.DateTimeFilter<"Pet"> | Date | string
   orgs_id?: Prisma.StringFilter<"Pet"> | string
 }
@@ -538,6 +588,8 @@ export type PetCreateManyOrgInput = {
   nivel_energia: $Enums.Nivel_Energia
   independencia: $Enums.Independencia
   ambiente: $Enums.Ambiente
+  cidade_org: string
+  estado_org: string
   created_at?: Date | string
 }
 
@@ -549,6 +601,8 @@ export type PetUpdateWithoutOrgInput = {
   nivel_energia?: Prisma.EnumNivel_EnergiaFieldUpdateOperationsInput | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaFieldUpdateOperationsInput | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteFieldUpdateOperationsInput | $Enums.Ambiente
+  cidade_org?: Prisma.StringFieldUpdateOperationsInput | string
+  estado_org?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -560,6 +614,8 @@ export type PetUncheckedUpdateWithoutOrgInput = {
   nivel_energia?: Prisma.EnumNivel_EnergiaFieldUpdateOperationsInput | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaFieldUpdateOperationsInput | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteFieldUpdateOperationsInput | $Enums.Ambiente
+  cidade_org?: Prisma.StringFieldUpdateOperationsInput | string
+  estado_org?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -571,6 +627,8 @@ export type PetUncheckedUpdateManyWithoutOrgInput = {
   nivel_energia?: Prisma.EnumNivel_EnergiaFieldUpdateOperationsInput | $Enums.Nivel_Energia
   independencia?: Prisma.EnumIndependenciaFieldUpdateOperationsInput | $Enums.Independencia
   ambiente?: Prisma.EnumAmbienteFieldUpdateOperationsInput | $Enums.Ambiente
+  cidade_org?: Prisma.StringFieldUpdateOperationsInput | string
+  estado_org?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -584,6 +642,8 @@ export type PetSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   nivel_energia?: boolean
   independencia?: boolean
   ambiente?: boolean
+  cidade_org?: boolean
+  estado_org?: boolean
   created_at?: boolean
   orgs_id?: boolean
   org?: boolean | Prisma.OrgsDefaultArgs<ExtArgs>
@@ -597,6 +657,8 @@ export type PetSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extension
   nivel_energia?: boolean
   independencia?: boolean
   ambiente?: boolean
+  cidade_org?: boolean
+  estado_org?: boolean
   created_at?: boolean
   orgs_id?: boolean
   org?: boolean | Prisma.OrgsDefaultArgs<ExtArgs>
@@ -610,6 +672,8 @@ export type PetSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extension
   nivel_energia?: boolean
   independencia?: boolean
   ambiente?: boolean
+  cidade_org?: boolean
+  estado_org?: boolean
   created_at?: boolean
   orgs_id?: boolean
   org?: boolean | Prisma.OrgsDefaultArgs<ExtArgs>
@@ -623,11 +687,13 @@ export type PetSelectScalar = {
   nivel_energia?: boolean
   independencia?: boolean
   ambiente?: boolean
+  cidade_org?: boolean
+  estado_org?: boolean
   created_at?: boolean
   orgs_id?: boolean
 }
 
-export type PetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "idade" | "tamanho" | "nivel_energia" | "independencia" | "ambiente" | "created_at" | "orgs_id", ExtArgs["result"]["pet"]>
+export type PetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "idade" | "tamanho" | "nivel_energia" | "independencia" | "ambiente" | "cidade_org" | "estado_org" | "created_at" | "orgs_id", ExtArgs["result"]["pet"]>
 export type PetInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   org?: boolean | Prisma.OrgsDefaultArgs<ExtArgs>
 }
@@ -651,6 +717,8 @@ export type $PetPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     nivel_energia: $Enums.Nivel_Energia
     independencia: $Enums.Independencia
     ambiente: $Enums.Ambiente
+    cidade_org: string
+    estado_org: string
     created_at: Date
     orgs_id: string
   }, ExtArgs["result"]["pet"]>
@@ -1084,6 +1152,8 @@ export interface PetFieldRefs {
   readonly nivel_energia: Prisma.FieldRef<"Pet", 'Nivel_Energia'>
   readonly independencia: Prisma.FieldRef<"Pet", 'Independencia'>
   readonly ambiente: Prisma.FieldRef<"Pet", 'Ambiente'>
+  readonly cidade_org: Prisma.FieldRef<"Pet", 'String'>
+  readonly estado_org: Prisma.FieldRef<"Pet", 'String'>
   readonly created_at: Prisma.FieldRef<"Pet", 'DateTime'>
   readonly orgs_id: Prisma.FieldRef<"Pet", 'String'>
 }

@@ -10,6 +10,8 @@ interface RegisterPetUseCaseRequest {
   nivelEnergia: 'BAIXO' | 'MEDIO' | 'ALTO'
   independencia: 'BAIXO' | 'MEDIO' | 'ALTO'
   ambiente: 'INTERIOR' | 'EXTERIOR' | 'AMBOS'
+  cidadeOrg: string
+  estadoOrg: string
   orgId: string
 }
 
@@ -30,6 +32,8 @@ export class RegisterPetUseCase {
     nivelEnergia,
     independencia,
     ambiente,
+    cidadeOrg,
+    estadoOrg,
     orgId,
   }: RegisterPetUseCaseRequest): Promise<RegisterPetUseCaseResponse> {
     const verificarIdOrg = await this.orgsRepository.findById(orgId)
@@ -45,6 +49,8 @@ export class RegisterPetUseCase {
       nivel_energia: nivelEnergia,
       independencia,
       ambiente,
+      cidade_org: cidadeOrg,
+      estado_org: estadoOrg,
       orgs_id: orgId,
     })
 

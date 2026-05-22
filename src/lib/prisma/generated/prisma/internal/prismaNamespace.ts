@@ -616,6 +616,8 @@ export const PetScalarFieldEnum = {
   nivel_energia: 'nivel_energia',
   independencia: 'independencia',
   ambiente: 'ambiente',
+  cidade_org: 'cidade_org',
+  estado_org: 'estado_org',
   created_at: 'created_at',
   orgs_id: 'orgs_id'
 } as const
