@@ -1,20 +1,38 @@
 import { randomUUID } from 'node:crypto'
-import type { Pet } from '@/lib/prisma/generated/prisma/client'
+import type {
+  Ambiente,
+  Idade,
+  Independencia,
+  Nivel_Energia,
+  Pet,
+  Tamanho,
+} from '@/lib/prisma/generated/prisma/client'
 import type { PetUncheckedCreateInput } from '@/lib/prisma/generated/prisma/models'
 import type { PetsRepository } from '../pets-repository'
 
 export class InMemoryPetsRepository implements PetsRepository {
-  public pets: Pet[] = []
+  async findManyPets(
+    cityOrg: string,
+    idade?: Idade,
+    tamanho?: Tamanho,
+    nivelEnergia?: Nivel_Energia,
+    independencia?: Independencia,
+    ambiente?: Ambiente
+  ) {
+    const pets = this.pets.filter((item) => {
+      return (
+        item.cidade_org.toLowerCase() === cityOrg.toLowerCase() &&
+        (!idade || item.idade === idade) &&
+        (!tamanho || item.tamanho === tamanho) &&
+        (!nivelEnergia || item.nivel_energia === nivelEnergia) &&
+        (!independencia || item.independencia === independencia) &&
+        (!ambiente || item.ambiente === ambiente)
+      )
+    })
 
-  async findByCity(cityOrg: string) {
-    const pet = this.pets.find((item) => item.cidade_org === cityOrg)
-
-    if (!pet) {
-      return null
-    }
-
-    return pet
+    return pets
   }
+  public pets: Pet[] = []
 
   async create(data: PetUncheckedCreateInput) {
     const pet = {

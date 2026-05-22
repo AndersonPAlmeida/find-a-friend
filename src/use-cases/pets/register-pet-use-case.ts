@@ -1,15 +1,22 @@
-import type { Pet } from '@/lib/prisma/generated/prisma/client'
+import type {
+  Ambiente,
+  Idade,
+  Independencia,
+  Nivel_Energia,
+  Pet,
+  Tamanho,
+} from '@/lib/prisma/generated/prisma/client'
 import type { OrgsRepository } from '@/repositories/orgs-repository'
 import type { PetsRepository } from '@/repositories/pets-repository'
 import { OrgIdCadastratadoError } from '../errors/orgs/org-id-invalido-error'
 
 interface RegisterPetUseCaseRequest {
   nome: string
-  idade: 'FILHOTE' | 'ADULTO' | 'GRANDE'
-  tamanho: 'PEQUENO' | 'MEDIO' | 'IDOSO'
-  nivelEnergia: 'BAIXO' | 'MEDIO' | 'ALTO'
-  independencia: 'BAIXO' | 'MEDIO' | 'ALTO'
-  ambiente: 'INTERIOR' | 'EXTERIOR' | 'AMBOS'
+  idade: Idade
+  tamanho: Tamanho
+  nivelEnergia: Nivel_Energia
+  independencia: Independencia
+  ambiente: Ambiente
   cidadeOrg: string
   estadoOrg: string
   orgId: string
