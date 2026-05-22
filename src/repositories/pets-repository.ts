@@ -9,6 +9,7 @@ import type {
 } from '@/lib/prisma/generated/prisma/client'
 
 export interface PetsRepository {
+  findById(idPet: string): Promise<Pet | null>
   findManyPets(
     cityOrg: string,
     page: number,

@@ -11,6 +11,16 @@ import type { PetUncheckedCreateInput } from '@/lib/prisma/generated/prisma/mode
 import type { PetsRepository } from '../pets-repository'
 
 export class InMemoryPetsRepository implements PetsRepository {
+  async findById(idPet: string) {
+    const pet = this.pets.find((item) => item.id === idPet)
+
+    if (!pet) {
+      return null
+    }
+
+    return pet
+  }
+
   async findManyPets(
     cityOrg: string,
     page: number,
