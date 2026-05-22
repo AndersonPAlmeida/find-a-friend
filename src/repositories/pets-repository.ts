@@ -11,6 +11,7 @@ import type {
 export interface PetsRepository {
   findManyPets(
     cityOrg: string,
+    page: number,
     idade?: Idade,
     tamanho?: Tamanho,
     nivelEnergia?: Nivel_Energia,

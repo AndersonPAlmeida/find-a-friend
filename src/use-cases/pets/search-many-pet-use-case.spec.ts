@@ -3,11 +3,11 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import type { Orgs } from '@/lib/prisma/generated/prisma/client'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
-import { SearchPetUseCase } from './search-pet-use-case'
+import { SearchManyPetUseCase } from './search-many-pet-use-case'
 
 let orgsRepository: InMemoryOrgsRepository
 let petsRepository: InMemoryPetsRepository
-let sut: SearchPetUseCase
+let sut: SearchManyPetUseCase
 
 let org: Orgs
 let org2: Orgs
@@ -16,7 +16,7 @@ describe('Busca de Pet através de filtros', () => {
   beforeEach(async () => {
     petsRepository = new InMemoryPetsRepository()
     orgsRepository = new InMemoryOrgsRepository()
-    sut = new SearchPetUseCase(petsRepository)
+    sut = new SearchManyPetUseCase(petsRepository)
 
     org = await orgsRepository.create({
       nome: 'ONG Amigos de Patas',
@@ -59,7 +59,7 @@ describe('Busca de Pet através de filtros', () => {
       })
     }
 
-    const { pets } = await sut.execute({ cidadePet: 'Jequié' })
+    const { pets } = await sut.execute({ cidadePet: 'Jequié', page: 1 })
     expect(pets).toHaveLength(5)
   })
 
@@ -85,10 +85,73 @@ describe('Busca de Pet através de filtros', () => {
 
     const { pets } = await sut.execute({
       cidadePet: 'Jequié',
+      page: 1,
       idade: 'ADULTO',
     })
 
     expect(pets).toHaveLength(1)
     expect(pets).toEqual([expect.objectContaining({ idade: 'ADULTO' })])
+  })
+
+  it('Deve ser capaz de buscar uma lista de 20 pets por página.', async () => {
+    for (let i = 0; i < 22; i++) {
+      await petsRepository.create({
+        nome: `Thor ${i}`,
+
+        idade: 'ADULTO',
+        tamanho: 'MEDIO',
+        nivel_energia: 'ALTO',
+        independencia: 'MEDIO',
+        ambiente: 'AMBOS',
+
+        cidade_org: org.cidade,
+        estado_org: org.estado,
+        orgs_id: org.id,
+      })
+    }
+
+    const { pets } = await sut.execute({
+      cidadePet: 'Jequié',
+      page: 1,
+    })
+
+    expect(pets).toHaveLength(20)
+    expect(pets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ nome: 'Thor 18' }),
+        expect.objectContaining({ nome: 'Thor 19' }),
+      ])
+    )
+  })
+
+  it('Deve ser capaz de realizar paginação para mais de 20 pets cadastrados na mesma cidade.', async () => {
+    for (let i = 0; i < 22; i++) {
+      await petsRepository.create({
+        nome: `Thor ${i}`,
+
+        idade: 'ADULTO',
+        tamanho: 'MEDIO',
+        nivel_energia: 'ALTO',
+        independencia: 'MEDIO',
+        ambiente: 'AMBOS',
+
+        cidade_org: org.cidade,
+        estado_org: org.estado,
+        orgs_id: org.id,
+      })
+    }
+
+    const { pets } = await sut.execute({
+      cidadePet: 'Jequié',
+      page: 2,
+    })
+
+    expect(pets).toHaveLength(2)
+    expect(pets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ nome: 'Thor 20' }),
+        expect.objectContaining({ nome: 'Thor 21' }),
+      ])
+    )
   })
 })

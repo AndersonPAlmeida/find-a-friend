@@ -13,25 +13,29 @@ import type { PetsRepository } from '../pets-repository'
 export class InMemoryPetsRepository implements PetsRepository {
   async findManyPets(
     cityOrg: string,
+    page: number,
     idade?: Idade,
     tamanho?: Tamanho,
     nivelEnergia?: Nivel_Energia,
     independencia?: Independencia,
     ambiente?: Ambiente
   ) {
-    const pets = this.pets.filter((item) => {
-      return (
-        item.cidade_org.toLowerCase() === cityOrg.toLowerCase() &&
-        (!idade || item.idade === idade) &&
-        (!tamanho || item.tamanho === tamanho) &&
-        (!nivelEnergia || item.nivel_energia === nivelEnergia) &&
-        (!independencia || item.independencia === independencia) &&
-        (!ambiente || item.ambiente === ambiente)
-      )
-    })
+    const pets = this.pets
+      .filter((item) => {
+        return (
+          item.cidade_org.toLowerCase() === cityOrg.toLowerCase() &&
+          (!idade || item.idade === idade) &&
+          (!tamanho || item.tamanho === tamanho) &&
+          (!nivelEnergia || item.nivel_energia === nivelEnergia) &&
+          (!independencia || item.independencia === independencia) &&
+          (!ambiente || item.ambiente === ambiente)
+        )
+      })
+      .slice((page - 1) * 20, page * 20)
 
     return pets
   }
+
   public pets: Pet[] = []
 
   async create(data: PetUncheckedCreateInput) {

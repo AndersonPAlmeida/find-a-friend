@@ -10,6 +10,7 @@ import type { PetsRepository } from '@/repositories/pets-repository'
 
 interface SearchPetsUseCaseRequest {
   cidadePet: string
+  page: number
   idade?: Idade
   tamanho?: Tamanho
   nivelEnergia?: Nivel_Energia
@@ -21,11 +22,12 @@ interface SearchPetsUseCaseResponse {
   pets: Pet[]
 }
 
-export class SearchPetUseCase {
+export class SearchManyPetUseCase {
   constructor(private petsRepository: PetsRepository) {}
 
   async execute({
     cidadePet,
+    page,
     idade,
     tamanho,
     nivelEnergia,
@@ -34,6 +36,7 @@ export class SearchPetUseCase {
   }: SearchPetsUseCaseRequest): Promise<SearchPetsUseCaseResponse> {
     const pets = await this.petsRepository.findManyPets(
       cidadePet,
+      page,
       idade,
       tamanho,
       nivelEnergia,
