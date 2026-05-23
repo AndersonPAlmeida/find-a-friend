@@ -12,7 +12,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     nome: z.string().nonempty('Nome é obrigatório.'),
     enderecoRua: z.string().nonempty('Endereço é obrigatório.'),
     estado: z.string().nonempty('Estado é obrigatório.'),
-    password: z.string().nonempty('Senha é obrigatória.'),
+    password: z.string().min(6).nonempty('Senha é obrigatória.'),
     whatsapp: z.string().nonempty('WhatsApp é obrigatório.'),
   })
 
