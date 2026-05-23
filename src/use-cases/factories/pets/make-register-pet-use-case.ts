@@ -2,13 +2,10 @@ import { PrismaOrgsRepository } from '@/repositories/prisma/prisma-orgs-reposito
 import { PrismaPetsRepository } from '@/repositories/prisma/prisma-pets-repository'
 import { RegisterPetUseCase } from '@/use-cases/pets/register-pet-use-case'
 
-export function makeRegisterOrgUseCase() {
+export function makeRegisterPetUseCase() {
   const orgsRepository = new PrismaOrgsRepository()
   const petsRepository = new PrismaPetsRepository()
-  const registerPetsUseCase = new RegisterPetUseCase(
-    orgsRepository,
-    petsRepository
-  )
+  const petUseCase = new RegisterPetUseCase(orgsRepository, petsRepository)
 
-  return registerPetsUseCase
+  return petUseCase
 }
