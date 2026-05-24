@@ -18,11 +18,11 @@ Appp Find A Friend
 [x]Todo pet cadastrado precisa estar vinculado a uma ORG
 [x]O contato do usuário interessado em adotar um pet será feito diretamente com a ORG via WhatsApp
 [x]Todos os filtros de características do pet, com exceção da cidade, são opcionais
-[]Para que uma ORG tenha acesso administrativo à aplicação, ela deve estar logada
+[x]Para que uma ORG tenha acesso administrativo à aplicação, ela deve estar logada
 
 ## RNFs (Requisitos não-funcionais)
 
 - [x] A senha do usuário precisa estar criptografada;
 - [x] Os dados da aplicação precisam estar persistidos em um banco PostreSQL;
 - [x] Todas listas de dados precisar estar paginadas com 20 itens por página;
-- [] O usuário deve ser identificado por um JWT (JSON Web Token);
+- [x] O usuário deve ser identificado por um JWT (JSON Web Token);
