@@ -5,8 +5,6 @@ import { OrgIdCadastratadoError } from '@/use-cases/errors/orgs/org-id-invalido-
 import { makeRegisterPetUseCase } from '@/use-cases/factories/pets/make-register-pet-use-case'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
-  await request.jwtVerify()
-
   const registerBodySchema = z.object({
     nome: z.string().min(2, 'O nome deve ter no mínimo 2 caracteres'),
     idade: z.enum(['FILHOTE', 'ADULTO', 'IDOSO']),
