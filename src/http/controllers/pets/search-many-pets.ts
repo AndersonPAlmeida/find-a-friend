@@ -5,8 +5,8 @@ import { makeSearchManyPetUseCase } from '@/use-cases/factories/pets/make-many-s
 export async function searchMany(request: FastifyRequest, reply: FastifyReply) {
   const seachBodySchema = z.object({
     cidadePet: z.string().nonempty('Cidade é obrigatória.'),
-    idade: z.enum(['FILHOTE', 'ADULTO', 'GRANDE']).nullable().optional(),
-    tamanho: z.enum(['PEQUENO', 'MEDIO', 'IDOSO']).nullable().optional(),
+    idade: z.enum(['FILHOTE', 'ADULTO', 'IDOSO']).nullable().optional(),
+    tamanho: z.enum(['PEQUENO', 'MEDIO', 'GRANDE']).nullable().optional(),
     nivelEnergia: z.enum(['BAIXO', 'MEDIO', 'ALTO']).nullable().optional(),
     independencia: z.enum(['BAIXO', 'MEDIO', 'ALTO']).nullable().optional(),
     ambiente: z.enum(['INTERIOR', 'EXTERIOR', 'AMBOS']).nullable().optional(),

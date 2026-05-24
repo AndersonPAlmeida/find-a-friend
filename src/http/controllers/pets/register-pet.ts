@@ -9,8 +9,8 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
   const registerBodySchema = z.object({
     nome: z.string().min(2, 'O nome deve ter no mínimo 2 caracteres'),
-    idade: z.enum(['FILHOTE', 'ADULTO', 'GRANDE']),
-    tamanho: z.enum(['PEQUENO', 'MEDIO', 'IDOSO']),
+    idade: z.enum(['FILHOTE', 'ADULTO', 'IDOSO']),
+    tamanho: z.enum(['PEQUENO', 'MEDIO', 'GRANDE']),
     nivelEnergia: z.enum(['BAIXO', 'MEDIO', 'ALTO']),
     independencia: z.enum(['BAIXO', 'MEDIO', 'ALTO']),
     ambiente: z.enum(['INTERIOR', 'EXTERIOR', 'AMBOS']),

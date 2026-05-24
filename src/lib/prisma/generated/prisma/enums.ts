@@ -12,7 +12,7 @@
 export const Idade = {
   FILHOTE: 'FILHOTE',
   ADULTO: 'ADULTO',
-  GRANDE: 'GRANDE'
+  IDOSO: 'IDOSO'
 } as const
 
 export type Idade = (typeof Idade)[keyof typeof Idade]
@@ -21,7 +21,7 @@ export type Idade = (typeof Idade)[keyof typeof Idade]
 export const Tamanho = {
   PEQUENO: 'PEQUENO',
   MEDIO: 'MEDIO',
-  IDOSO: 'IDOSO'
+  GRANDE: 'GRANDE'
 } as const
 
 export type Tamanho = (typeof Tamanho)[keyof typeof Tamanho]
