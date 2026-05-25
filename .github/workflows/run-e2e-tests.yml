@@ -27,6 +27,16 @@ jobs:
 
       - run: npm ci
 
+      - run: npx prisma generate
+        env:
+          JWT_SECRET: testing
+          DATABASE_URL: "postgresql://docker:docker@localhost:5432/apifindafriend?schema=public"
+
+      - run: npx prisma migrate deploy 
+        env:
+          JWT_SECRET: testing
+          DATABASE_URL: "postgresql://docker:docker@localhost:5432/apifindafriend?schema=public" 
+
       - run: npm run test:e2e
         env:
           JWT_SECRET: testing
